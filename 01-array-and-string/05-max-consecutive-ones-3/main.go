@@ -15,7 +15,6 @@ func main() {
 
 func longest(nums []int, k int) int {
 	ans, left := 0, 0
-
 	for right := 0; right < len(nums); right++ {
 		if nums[right] == 0 {
 			k--
@@ -25,6 +24,7 @@ func longest(nums []int, k int) int {
 			k += 1 - nums[left]
 			left++
 		}
+
 		size := right - left + 1
 		if size > ans {
 			ans = size
@@ -32,4 +32,22 @@ func longest(nums []int, k int) int {
 	}
 
 	return ans
+	// ans, left := 0, 0
+
+	// for right := 0; right < len(nums); right++ {
+	// 	if nums[right] == 0 {
+	// 		k--
+	// 	}
+
+	// 	if k < 0 {
+	// 		k += 1 - nums[left]
+	// 		left++
+	// 	}
+	// 	size := right - left + 1
+	// 	if size > ans {
+	// 		ans = size
+	// 	}
+	// }
+
+	// return ans
 }

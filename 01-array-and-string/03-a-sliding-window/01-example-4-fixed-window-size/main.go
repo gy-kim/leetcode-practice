@@ -11,19 +11,40 @@ func main() {
 }
 
 func findBestSubarray(nums []int, k int) int {
+	max := func(i, j int) int {
+		if i > j {
+			return i
+		}
+		return j
+	}
 	curr := 0
+	ans := 0
+
 	for i := 0; i < k; i++ {
 		curr += nums[i]
 	}
 
-	ans := curr
+	ans = curr
 	for i := k; i < len(nums); i++ {
-		curr = curr + nums[i] - nums[i-k]
-	}
-
-	if curr > ans {
-		ans = curr
+		curr = curr - nums[i-k] + nums[i]
+		ans = max(ans, curr)
 	}
 
 	return ans
+
+	// curr := 0
+	// for i := 0; i < k; i++ {
+	// 	curr += nums[i]
+	// }
+
+	// ans := curr
+	// for i := k; i < len(nums); i++ {
+	// 	curr = curr + nums[i] - nums[i-k]
+	// }
+
+	// if curr > ans {
+	// 	ans = curr
+	// }
+
+	// return ans
 }
